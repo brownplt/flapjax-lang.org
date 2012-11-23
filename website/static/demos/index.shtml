@@ -88,10 +88,10 @@ var examples =
     , items: 
       { desc: "A mashup of Yahoo! Local and Google Maps."
       , url: "yaggle.html" } }
-  , { synopsis: "Twiggle: Twitter and Google Maps mashup", id: 'twiggle'
+  , { synopsis: "Giggle: Github and Google Maps mashup", id: 'twiggle'
     , items: 
       { desc: "A mashup of Twitter and Google Maps."
-      , url: "twiggle.html"
+      , url: "giggle.html"
       }
     }
   , { synopsis: "Drag and Drop", id: 'drag'
