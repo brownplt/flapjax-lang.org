@@ -1,0 +1,3 @@
+[submodule "flapjax"]
+	path = flapjax
+	url = git@github.com:brownplt/flapjax.git
