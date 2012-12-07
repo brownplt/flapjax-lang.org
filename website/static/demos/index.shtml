@@ -171,7 +171,7 @@ function processAnchor(id) {
                  P(A({href: '/try/index.html?edit=' + item.url}, 'View and edit the code (Flapjax as a library)')));
     }
     
-    var itemsDom = DIV({},map(makeItem,items));
+    var itemsDom = DIV({},items.map(makeItem));
 
     insertDom(itemsDom,$('demo'),'beginning');
   }
@@ -201,7 +201,7 @@ var historyE = function() {
   
   
 function loader() {
-  var demos = DIV({id: "demoLinks" },map(makeDemoLink,examples));
+  var demos = DIV({id: "demoLinks" },examples.map(makeDemoLink));
   insertDom(demos,'demoLinks');
   
   historyE().mapE(processAnchor);
