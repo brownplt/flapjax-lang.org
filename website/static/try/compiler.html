@@ -6,9 +6,23 @@
 </script>
 <script type="text/javascript" src="/demos/prototype.js"></script>
 <script type="text/javascript">
+
+function s4() {
+  return Math.floor((1 + Math.random()) * 0x10000)
+             .toString(16)
+             .substring(1);
+};
+
+function guid() {
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+         s4() + '-' + s4() + s4() + s4();
+}
+
+var myGuid = guid();
+
 function makeUpload(src) {
   return {
-    url: '/fxserver/setobj/tryFlapjax/',
+    url: '/fxserver/setobj/' + myGuid,
     body: src,
     request: 'rawPost',
     response: 'json', /* we get back a simple true/false value */
@@ -18,7 +32,7 @@ function makeUpload(src) {
 
 function makeCompileRequest(src) {
   return {
-    url: "/fxserver/compile/",
+    url: "/fxserver/compile/" + myGuid,
     body: src,
     request: "rawPost",
     response: "plain", // TODO: be more informative
@@ -58,7 +72,7 @@ function initialLoaded(initial) {
 
   var compileResultE = compileE(doE,src);
 
-  var displayB = mergeE(clicksE("hideMsgs").constantE("none"),
+  var displayB = mergeE(clicksE($("hideMsgs")).constantE("none"),
                         compileResultE.mapE(function(msg) {
                           return !msg ? "none" : "block" }))
                  .startsWith("none");
@@ -69,7 +83,7 @@ function initialLoaded(initial) {
   insertValueE(compileResultE,$("msgs"),"innerHTML"); // security police
 
   compileResultE.mapE(function(compileResult) {
-    window.parent.output.location.href = "/fxserver/getobj/tryFlapjax/";
+    window.parent.output.location.href = "/fxserver/getobj/" + myGuid;
      });
   
   }
