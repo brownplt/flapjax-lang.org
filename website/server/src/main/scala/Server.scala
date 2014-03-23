@@ -12,6 +12,27 @@ import akka.actor.ActorLogging
 import java.io.{ByteArrayInputStream}
 import akka.event.Logging
 
+class StringProcessLogger extends scala.sys.process.ProcessLogger {
+
+  private val stderrBuilder = new StringBuilder()
+  private val stdoutBuilder = new StringBuilder()
+
+  def buffer[T](f : => T) : T = f
+
+  def appender (builder : StringBuilder, s : => String) : Unit = {
+    builder.append(s).append("\n")
+  }
+
+  def err (builder : => String) = appender(stderrBuilder, builder)
+
+  def out (builder : => String) = appender(stdoutBuilder, builder)
+
+  def stderr () = stderrBuilder.result
+
+  def stdout () = stdoutBuilder.result
+}
+
+
 class ServerActor extends HttpServiceActor with ActorLogging {
 
   import context.dispatcher
@@ -24,17 +45,17 @@ class ServerActor extends HttpServiceActor with ActorLogging {
 
   def receive = runRoute {
     pathPrefix("fxserver") {
-      (pathPrefix("compile") & post) {
+      (path("compile" / Rest) & post) { (key : String) =>
         entity(as[Array[Byte]]) { (prog : Array[Byte]) =>
-          complete {
-            import scala.sys.process._
-            log.info("Compiling a program:")
-
-            val input = new ByteArrayInputStream(prog)
-            val cmd = "fxc --flapjax /fx/flapjax.js --stdin --stdout --web-mode"
-            val r = cmd #< input
-            r.lines_!.mkString("\n")
-          }
+          import scala.sys.process._
+          log.info("Compiling a program:")
+          val input = new ByteArrayInputStream(prog)
+          val cmd = "fxc --flapjax /fx/flapjax.js --stdin --stdout --web-mode"
+          val outputs = new StringProcessLogger()
+          val exitCode = cmd #< input !<(outputs)
+          cache(key) { outputs.stdout }
+          log.info(s"Compiler exited with code ${exitCode} on stored program ${key} ")
+          complete { outputs.stderr }
         }
       }  ~
       (pathPrefix("compile_expr") & post) {
@@ -55,7 +76,7 @@ class ServerActor extends HttpServiceActor with ActorLogging {
             "false" // JSON false
           }
           case Some(value) => complete {
-            value
+            HttpEntity(ContentType(MediaTypes.`text/html`), Await.result(value, 5.second))
           }
         }
       }  ~
