@@ -42,4 +42,6 @@ libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.9"
 
 libraryDependencies += "ch.qos.logback" % "logback-core" % "1.0.9"
 
+libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % "2.3.0"
+
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.0.9"
