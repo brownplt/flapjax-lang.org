@@ -3,6 +3,7 @@
 SHTMLS = $(shell find static -name "*.shtml")
 
 all: build-static build static
+		cd server && $(MAKE)
 
 clean:
 	rm -rf build

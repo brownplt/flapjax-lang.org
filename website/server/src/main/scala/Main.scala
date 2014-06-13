@@ -19,7 +19,7 @@ object Main extends App {
 
   args match {
     case Array("serve") =>
-      IO(Http) ! Http.Bind(server, interface = "localhost", port = 8081)
+      IO(Http) ! Http.Bind(server, interface = "127.0.0.1", port = 8081)
     case args =>
       import scala.collection.JavaConversions._
       println(s"Invalid arguments: ${args.toList}")
