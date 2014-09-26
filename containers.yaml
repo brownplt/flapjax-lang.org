@@ -1,0 +1,8 @@
+version: v1beta2
+containers:
+  - name: flapjax-website
+    image: docker-registry:5000/flapjax-website
+    ports:
+      - name: www
+        hostPort: 80
+        containerPort: 80

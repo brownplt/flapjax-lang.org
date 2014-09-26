@@ -1,0 +1,5 @@
+.vagrant
+website/build-static
+website/build
+website/server/logs
+
