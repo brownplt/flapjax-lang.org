@@ -3,7 +3,6 @@
 SHTMLS = $(shell find static -name "*.shtml")
 
 all: build-static build static
-		cd server && $(MAKE)
 
 clean:
 	rm -rf build
@@ -26,3 +25,9 @@ endif
 
 static: $(SHTMLS) build-static
 	./build-static static build
+
+container:
+	sudo docker.io build -t docker-registry.c.arjun-umass.internal:5000/flapjax-website .
+
+push:
+	sudo docker.io push docker-registry.c.arjun-umass.internal:5000/flapjax-website
