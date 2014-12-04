@@ -4,18 +4,18 @@
 
 <link rel="stylesheet" href="http://www.flapjax-lang.org/demo.css"/>
 <script type="text/javascript" src="http://www.flapjax-lang.org/fx/flapjax.js"></script>
-    
+
 <!-- Key for flapjax-lang.org -->
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA07alahwIRxVTzJTPWrMsbRS5L0b6NFYsD3pTE4uwqmHLVbk78xQu2MH5NiPwIQoK-AySk1s6kldWoQ"
       type="text/javascript"></script>
 
-<title>Twiggle</title>
+<title>Giggle</title>
 <script type="text/javascript">
 
 //google.load("maps", "2");
 
 var efscArg;
-// makeGoogleGeocoder :: EventStream {data: a, location: string } 
+// makeGoogleGeocoder :: EventStream {data: a, location: string }
 //                    -> EventStream { data: a, point: point or false }
 // 'location' is a string and point is suitably formatted for pinning on the
 // map.  The 'data' field is passed through.
@@ -25,7 +25,7 @@ function makeGoogleGeocoderE(requestsE) {
 
   var getResult = function(data) { return function(point) {
     resultsE.sendEvent({ data: data, point: point })}};
-  
+
   requestsE.mapE(function(req) {
     if (req && typeof(req.location) == "string") {
       geocoder.getLatLng(req.location,getResult(req.data));
@@ -58,15 +58,16 @@ function getGithubPublicTimelineE() {
 
   var gitE = receiverE();
   return responseE.bindE(function(resps) {
-    var respEs = fold(function(resp,acc) {
-      if (acc.evts.length > 2) return acc; 
+    var arr = resps && resps.data ? resps.data : [];
+    var respEs = arr.reduce(function(acc, resp) {
+      if (acc.evts.length > 2) return acc;
       if (seenUsers[resp.actor.login]) {
         console.log('filtering repeat user: ' + resp.actor.login);
         return acc;
-      } else seenUsers[resp.actor.login] = true;   
+      } else seenUsers[resp.actor.login] = true;
       acc.evts.push(oneE(resp).delayE(acc.delay));
       acc.delay = acc.delay + 3000; // just for fun, delay by 2.5s
-      return acc;}, { evts: [], delay: 0 }, resps && resps.data ? resps.data : []);
+      return acc;}, { evts: [], delay: 0 });
     return mergeE.apply(this,respEs.evts);
   });
 }
@@ -101,15 +102,15 @@ function makeGoogleMapOverlayE(googleMap,requestE) {
 function start() {
   var googleMap = new google.maps.Map2(document.getElementById("map"));
   googleMap.setCenter(new google.maps.LatLng(0, 0), 2);
-  
+
   var gitUserE = getGithubPublicTimelineE();
   var gitUserLocationE = getGithubUserLocationE(gitUserE);
-  
+
   var pointsE = makeGoogleGeocoderE(gitUserLocationE.mapE(function(usr) {
     console.log("hit", usr.data.login, usr.data.location);
     return { data: usr.data.login, location: usr.data.location };}));
 
-  
+
   // Avoid spurious errors if the point was not found.
   makeGoogleMapOverlayE(googleMap,pointsE.filterE(function(x) {
     return x.point; }));};
