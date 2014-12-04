@@ -12,14 +12,14 @@ object Main extends App {
   implicit val system = ActorSystem("flapjax-server")
   implicit val log = system.log
   import system.dispatcher
-  
+
   implicit val timeout = Timeout(120.second)
 
   lazy val server = system.actorOf(Props(classOf[ServerActor]), "server")
 
   args match {
     case Array("serve") =>
-      IO(Http) ! Http.Bind(server, interface = "127.0.0.1", port = 8081)
+      IO(Http) ! Http.Bind(server, interface = "0.0.0.0", port = 8081)
     case args =>
       import scala.collection.JavaConversions._
       println(s"Invalid arguments: ${args.toList}")

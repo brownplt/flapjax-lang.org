@@ -62,7 +62,6 @@ class ServerActor extends HttpServiceActor with ActorLogging {
         entity(as[Array[Byte]]) { (prog : Array[Byte]) =>
           complete {
             import scala.sys.process._
-
             val input = new ByteArrayInputStream(prog)
             val cmd = "fxc --flapjax /fx/flapjax.js --stdin --stdout --expression"
             val r = cmd #< input
@@ -72,7 +71,7 @@ class ServerActor extends HttpServiceActor with ActorLogging {
       }  ~
       (path("getobj" / Rest) & get) { (key : String) =>
         cache.get(key) match {
-          case None => complete { 
+          case None => complete {
             "false" // JSON false
           }
           case Some(value) => complete {
@@ -82,12 +81,13 @@ class ServerActor extends HttpServiceActor with ActorLogging {
       }  ~
       (path("setobj" / Rest)  & post) { (key : String) =>
         entity(as[String]) { (value : String) =>
+          val _ = cache.remove(key)
           cache(key) { value }
-          complete { 
+          complete {
             "true" // JSON true
           }
         }
-      }  
+      }
     } ~
     logRequest(("invalid request", Logging.ErrorLevel)) {
       complete(StatusCodes.NotFound, "unexpected request")

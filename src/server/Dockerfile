@@ -8,8 +8,6 @@ MAINTAINER Arjun Guha <arjun@cs.umass.edu>
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y libgmp3c2
-RUN apt-get install -y apache2
-RUN apt-get install -y supervisor
 RUN apt-get install -y python-software-properties
 
 # https://gist.github.com/henrik-muehe/6155333
@@ -28,23 +26,15 @@ RUN apt-get update
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 RUN apt-get install -y oracle-java8-installer
 
-ADD website/static/download/fxc_2.0_i386.deb /root/fxc_2.0.i386.deb
+ADD fxc_2.0_i386.deb /root/fxc_2.0.i386.deb
 RUN echo "foreign-architecture i386" > /etc/dpkg/dpkg.cfg.d/architectures
 RUN apt-get install -y libgmp3c2:i386
 RUN dpkg  --force-depends -i /root/fxc_2.0.i386.deb
 
-ADD website/build /var/www
-ADD flapjax-site.conf /etc/apache2/sites-available/flapjax
-
-RUN a2dissite 000-default
-RUN a2ensite flapjax
-
-ADD website/server/target/scala-2.10/flapjax-server-assembly-2.0.jar \
+ADD target/scala-2.10/flapjax-server-assembly-2.0.jar \
   /root/flapjax-server-assembly-2.0.jar
 
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN a2enmod proxy_http
+EXPOSE 8081
 
-EXPOSE 80
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/java", "-jar", "/root/flapjax-server-assembly-2.0.jar", "serve"]

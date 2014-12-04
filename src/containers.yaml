@@ -6,3 +6,5 @@ containers:
       - name: www
         hostPort: 80
         containerPort: 80
+  - name: flapjax-compiler
+    image: docker-registry:5000/flapjax-compiler
