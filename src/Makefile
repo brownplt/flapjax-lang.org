@@ -12,8 +12,12 @@ testserver:
 	docker run -d --net="host" --name="compiler" -t docker-registry.c.arjun-umass.internal:5000/flapjax-compiler
 
 killserver:
-	docker rm -f compiler
-	docker rm -f website
+	docker rm -f compiler || true
+	docker rm -f website || true
+
+push:
+	(cd website && make push)
+	(cd server && make push)
 
 provision:
 	gcloud compute --project=arjun-umass instances create flapjax-website \

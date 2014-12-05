@@ -2,7 +2,6 @@
 <head>
 <link rel="stylesheet" href="/demo.css"/>
 <script type="text/javascript" src="/fx/flapjax.js"></script>
-<script type="text/javascript" src="/fx/fxws.js"></script>
 
 <title>Flapjax Demo: Flickr Search</title>
 <script type="text/javascript">
@@ -32,11 +31,10 @@ function makeImg(url) {
   return IMG({ src: url }); }
 
 function loader() {
-  initFlapjaxForeignWSO('/fx');
 
   var requestE = extractValueE("search").calmE(500).mapE(flickrSearchRequest);
-  var responseE = getForeignWebServiceObjectE(requestE);
- 
+  var responseE = getWebServiceObjectE(requestE);
+
   var thumbsE = responseE.mapE(function(response) {
     return DIV(map(makeImg,flickrResponseToUrls(response)))});
 
@@ -54,7 +52,7 @@ function loader() {
 search: <input type="text" id="search"/><br/><br/>
 
 <div id="thumbnails">Search for something</div>
-  
+
 </div>
 </body>
 </html>
