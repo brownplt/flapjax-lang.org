@@ -1,0 +1,11 @@
+
+```
+vagrant up
+vagrant ssh
+cd src/src
+make container
+# These require VPN into GCE
+make push
+make unprovision
+make provision
+```

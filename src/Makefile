@@ -15,6 +15,10 @@ killserver:
 	docker rm -f compiler || true
 	docker rm -f website || true
 
+container: all
+	(cd server && make container)
+	(cd website && make container)
+
 push:
 	(cd website && make push)
 	(cd server && make push)
