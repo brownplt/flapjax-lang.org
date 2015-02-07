@@ -10,6 +10,7 @@ apt-get install -yq \
   haskell-platform \
   git \
   docker.io \
+  racket \
   software-properties-common
 
 add-apt-repository ppa:webupd8team/java
