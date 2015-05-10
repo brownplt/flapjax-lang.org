@@ -6,6 +6,7 @@ all:
 	(cd flapjax/fx; make)
 	(cd flapjax/doc; make)
 	(cd website; make)
+	(cd server; make)
 
 testserver:
 	docker run -d -p 0.0.0.0:8080:80 --net="host" --name="website" -t docker-registry.c.arjun-umass.internal:5000/flapjax-website
@@ -25,8 +26,7 @@ push:
 
 provision:
 	gcloud compute --project=arjun-umass instances create flapjax-website \
-    --image container-vm-v20140929 \
-    --image-project google-containers \
+    --image container-vm \
     --metadata-from-file google-container-manifest=containers.yaml \
     --zone us-central1-a \
     --address 23.236.54.173 \

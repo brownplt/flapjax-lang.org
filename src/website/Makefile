@@ -27,7 +27,7 @@ static: $(SHTMLS) build-static
 	./build-static static build
 
 container:
-	sudo docker.io build -t docker-registry.c.arjun-umass.internal:5000/flapjax-website .
+	sudo docker.io build -t gcr.io/arjun_umass/flapjax_website .
 
 push:
-	sudo docker.io push docker-registry.c.arjun-umass.internal:5000/flapjax-website
+	gcloud preview docker push gcr.io/arjun_umass/flapjax_website
