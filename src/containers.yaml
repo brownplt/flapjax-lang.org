@@ -7,4 +7,4 @@ containers:
         hostPort: 80
         containerPort: 80
   - name: flapjax-compiler
-    image: gcr.io/arjun-umass/flapjax_website
+    image: gcr.io/arjun-umass/flapjax_compiler
