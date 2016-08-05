@@ -1,0 +1,129 @@
+<html>
+
+<head>
+
+<link rel="stylesheet" href="http://www.flapjax-lang.org/demo.css"/>
+<script type="text/javascript" src="http://www.flapjax-lang.org/fx/flapjax.js"></script>
+
+<!-- Key for flapjax-lang.org -->
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA07alahwIRxVTzJTPWrMsbRS5L0b6NFYsD3pTE4uwqmHLVbk78xQu2MH5NiPwIQoK-AySk1s6kldWoQ"
+      type="text/javascript"></script>
+
+<title>Giggle</title>
+<script type="text/javascript">
+
+//google.load("maps", "2");
+
+var efscArg;
+// makeGoogleGeocoder :: EventStream {data: a, location: string }
+//                    -> EventStream { data: a, point: point or false }
+// 'location' is a string and point is suitably formatted for pinning on the
+// map.  The 'data' field is passed through.
+function makeGoogleGeocoderE(requestsE) {
+  var geocoder = new google.maps.ClientGeocoder();
+  var resultsE = receiverE();
+
+  var getResult = function(data) { return function(point) {
+    resultsE.sendEvent({ data: data, point: point })}};
+
+  requestsE.mapE(function(req) {
+    if (req && typeof(req.location) == "string") {
+      geocoder.getLatLng(req.location,getResult(req.data));
+    }
+    else {
+      getResult(req.data)(false); }});
+
+  return resultsE; };
+
+
+//for JSON APIs that use a callback rather than an assignment
+function callbackToSet(evt) {
+  window[evt + "_val"] = null;
+  window[evt] = function (o) { window[evt + "_val"] = o; }
+}
+
+
+function getGithubPublicTimelineE() {
+  var url = 'https://api.github.com/events?callback=';
+  var evt = 'gotGithubEvent';
+  callbackToSet(evt);
+  var urlArg = {globalArg: evt + '_val', url: url + evt};
+  var requestE = mergeE(oneE(urlArg), timerE(6000).constantE(urlArg));
+  var responseE = evalForeignScriptValE(requestE);
+
+  // responseE carries a list of git events.  Transform it into an event
+  // stream of individual tweets.
+
+  var seenUsers = []; //let's only show unique users
+
+  var gitE = receiverE();
+  return responseE.bindE(function(resps) {
+    var arr = resps && resps.data ? resps.data : [];
+    var respEs = arr.reduce(function(acc, resp) {
+      if (acc.evts.length > 2) return acc;
+      if (seenUsers[resp.actor.login]) {
+        console.log('filtering repeat user: ' + resp.actor.login);
+        return acc;
+      } else seenUsers[resp.actor.login] = true;
+      acc.evts.push(oneE(resp).delayE(acc.delay));
+      acc.delay = acc.delay + 3000; // just for fun, delay by 2.5s
+      return acc;}, { evts: [], delay: 0 });
+    return mergeE.apply(this,respEs.evts);
+  });
+}
+
+function getGithubUserLocationE(gitUserE) {
+  gitUserE.mapE(function(o) { console.log('user req: ', o.actor.login); });
+  var evt = 'gotGithubUser';
+  callbackToSet(evt);
+  var requestE = gitUserE.mapE(function (u) {
+      return {globalArg: evt + '_val', url: 'https://api.github.com/users/' + u.actor.login + '?callback=' + evt};
+    });
+  var responseE = evalForeignScriptValE(requestE);
+  gitUserE.mapE(function (o) { console.log('git usr response', o); });
+  return responseE.
+     filterE(function (o) {
+       var hit = o.data && o.data.location;
+       if (!hit) console.log('git usr: no loc, filtering', o);
+       else console.log('git usr: ', o.data.location);
+       return hit; });
+}
+
+// makeGoogleMapOverlayE :: GoogleMap (EventStream { point: point, data: html }
+//                       -> EventStream Boolean
+function makeGoogleMapOverlayE(googleMap,requestE) {
+  requestE.mapE(function(req) {
+    var marker = new google.maps.Marker(req.point);
+    googleMap.addOverlay(marker);
+    marker.bindInfoWindowHtml(req.data);
+    // someone should check for errors
+    return true;});};
+
+function start() {
+  var googleMap = new google.maps.Map2(document.getElementById("map"));
+  googleMap.setCenter(new google.maps.LatLng(0, 0), 2);
+
+  var gitUserE = getGithubPublicTimelineE();
+  var gitUserLocationE = getGithubUserLocationE(gitUserE);
+
+  var pointsE = makeGoogleGeocoderE(gitUserLocationE.mapE(function(usr) {
+    console.log("hit", usr.data.login, usr.data.location);
+    return { data: usr.data.login, location: usr.data.location };}));
+
+
+  // Avoid spurious errors if the point was not found.
+  makeGoogleMapOverlayE(googleMap,pointsE.filterE(function(x) {
+    return x.point; }));};
+</script>
+</head>
+
+<body onload="start()">
+
+<h1>Giggle (Yaggle 2.0)</h1>
+
+<div id="map" style="width: 1000px; height: 600px"></div>
+
+</body>
+
+</html>
+

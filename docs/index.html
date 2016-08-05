@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html><head><title>Flapjax Framework API Documentation</title><link rel="stylesheet" href="single-page.css" /></head><body><div class="toc"><div class="title"><a name="toc">Flapjax Framework API Documentation</a></div><div class="tocSection"><div class="tocTitle">Event Streams</div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#oneE">oneE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#zeroE">zeroE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#mapE">mapE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#mergeE">mergeE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#switchE">switchE</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#condE">condE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#filterE">filterE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#ifE">ifE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#constantE">constantE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#collectE">collectE</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#andE">andE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#orE">orE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#notE">notE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#filterRepeatsE">filterRepeatsE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#receiverEandsendEvent">receiverE and sendEvent</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#snapshotE">snapshotE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#onceE">onceE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#skipFirstE">skipFirstE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#delayE">delayE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#blindE">blindE</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#calmE">calmE</a></span></span></div></div><div class="tocSection"><div class="tocTitle">Behaviors</div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#startsWith">startsWith</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#changes">changes</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#constantB">constantB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#delayB">delayB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#valueNow">valueNow</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#switchB">switchB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#andB">andB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#orB">orB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#notB">notB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#liftB">liftB</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#condB">condB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#ifB">ifB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#timerB">timerB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#blindB">blindB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#calmB">calmB</a></span></span></div><div class="tocLine"></div></div><div class="tocSection"><div class="tocTitle">DOM Manipulation</div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#Time-varyingDOMElements">Time-varying DOM Elements</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#insertDomB">insertDomB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#mouseTopB">mouseTopB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#mouseLeftB">mouseLeftB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#mouseB">mouseB</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#extractValueB">extractValueB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#extractValueE">extractValueE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#extractEventE">extractEventE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#clicksE">clicksE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#timerE">timerE</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#disableTimer">disableTimer</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#extractValueOnEventE">extractValueOnEventE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#extractIdB">extractIdB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#insertDomE">insertDomE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#insertValueE">insertValueE</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#insertValueB">insertValueB</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#tagRec">tagRec</a></span></span></div></div><div class="tocSection"><div class="tocTitle">Web Services</div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#getWebServiceObjectE">getWebServiceObjectE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#getForeignWebServiceObjectE">getForeignWebServiceObjectE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#evalForeignScriptValE">evalForeignScriptValE</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#initFlapjaxForeignWSO">initFlapjaxForeignWSO</a></span></span></div></div><div class="tocSection"><div class="tocTitle">DOM Utilities</div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#getElementsByClass">getElementsByClass</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#getObjsA">getObjsA</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#getObjs">getObjs</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#getObj">getObj</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#readCookie">readCookie</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#swapDom">swapDom</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#getURLParam">getURLParam</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#cumulativeOffset">cumulativeOffset</a></span></span></div></div><div class="tocSection"><div class="tocTitle">Miscellaneous Functions</div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#slice">slice</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#member">member</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#map">map</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#filter">filter</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#forEach">forEach</a></span></span></div><div class="tocLine"><span class="tocOuterLink"><span class="tocInnerLink"><a href="#fold">fold</a></span></span><span class="tocOuterLink"><span class="tocInnerLink"><a href="#foldR">foldR</a></span></span></div></div></div><div class="article"><div class="title"><a name="oneE">oneE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+oneE(val) -&gt; EventStream val
+</pre>
+
+<p>Create an event stream that fires just one event with the value
+<span class="inlineCode">val</span>.</p>
+
+<p>Note that <span class="inlineCode">oneE</span> does not immediately fire <span class="inlineCode">val</span>.  The event is queued and fired after the current event has finished propagating.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p>The following code prints <span class="inlineCode">"first"</span>, <span class="inlineCode">"second"</span> and <span class="inlineCode">"third"</span> in order:
+
+<pre>
+console.log('first');
+mapE(function(val) { console.log(val); },oneE('third'));
+console.log('second');
+</pre>
+
+</p>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="zeroE">zeroE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+zeroE() -&gt; EventStream a
+</pre>
+
+<p>Create an event stream that never fires any events.</p>
+
+</div><div class="article"><div class="title"><a name="mapE">mapE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+mapE(f, argE) -&gt; EventStream b
+
+argE :: EventStream a
+f :: a -&gt; b
+</pre>
+
+<p>Transforms a stream of events.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p><span class="inlineCode">timerE(1000)</span> is an event stream that fires an event every
+second. The event value is the current time, in milliseconds. The following
+expression transforms the event stream to return the current time plus one
+second:</p>
+
+<pre>
+mapE(timerE(1000),function(t) { return t + 1; })
+</pre>
+
+<p>Alternatively, we can use the <span class="inlineCode">mapE</span> method of the event
+object to achieve the same effect.</p>
+
+<pre>
+timerE(1000).mapE(function(t) { return t + 1; })
+</pre>
+
+</div>
+
+<div class="footnote"><span class="inlineCode">argE.mapE(f)</span> is a synonym for <span class="inlineCode">mapE</span>.</div>
+</div><div class="article"><div class="title"><a name="mergeE">mergeE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+mergeE(event_1, ..., event_n) -&gt; EventStream a
+
+event_1 :: EventStream a
+...
+event_n :: EventStream a
+</pre>
+
+<p>Accepts multiple event streams and merge their events into a single event
+stream. whenever an event occurs on one of the original streams, it is
+propagated into the merged event stream.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p>Suppose we are building a web-based document editor. We wish the save
+the document every 60 seconds, and when the user clicks the save button:</p>
+
+<pre>
+var saveTimer = timerE(60000);
+var saveClicked = extractEventE('save-button','click');
+var save = mergeE(saveTimer,saveClicked);
+save.mapE(doSave); // doSave does the real work
+</pre>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="switchE">switchE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+switchE(anyEE) -&gt; EventStream a
+
+anyEE :: EventStream (EventStream a)
+</pre>
+
+<p>Given an event stream of event streams, fire events from the most recent
+event stream.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<pre>
+var domStreamE = receiverE(); // every event is a DOM object
+domStreamE.
+	switchE().
+	extractEventE('mouseover').
+	mapE(function(_) { alert('hit!'); });
+</pre>
+
+</div>
+
+<div class="footnote"><span class="inlineCode">anyEE.switchE</span> is a synonym for <span class="inlineCode">switchE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="condE">condE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+condE([boolE,resultE], ...) -&gt; EventStream a
+
+boolE :: EventStream Bool
+resultE :: EventStream a
+</pre>
+
+<p>Conditional with multiple branches. The input is a set of pairs. Using
+argument order to determine priority within one time step (only one event
+should be sent per timestep), the first tuple with both a pair with a first
+event occuring of true and second event of type a will have the value of the
+second event will propagate. No value needs to propagate every time step.</p>
+
+</div><div class="article"><div class="title"><a name="filterE">filterE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+filterE(sourceE,pred) -&gt; EventStream a
+
+sourceE :: EventStream a
+pred :: a -&gt; Bool
+</pre>
+
+<p>Given an event stream and a predicate, filters out the events that do not
+satisfy the predicate.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p>The following event stream only contains positive numbers:</p>
+
+<pre>
+numbers.filterE(function (v) { return v &gt; 0; })
+</pre>
+
+</div>
+
+<div class="footnote"><span class="inlineCode">sourceE.filterE</span> is a synonym for <span class="inlineCode">filterE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="ifE">ifE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+ifE(testE,trueE,falseE) -&gt; EventStream a
+
+testE :: EventStream Bool
+trueE :: EventStream a
+falseE :: EventStream a
+</pre>
+
+<p>When an event occurs in the test position, if it is true, and in the same
+timestep an event occurs in the true branch, propagate the event in the true
+branch. If the test position receives a false event, then if in the same
+timestep an event occurs and the false branch, propagate that event. If either
+no event occurs in the test position or no event occurs in the enabled branch,
+do not send an event.  </p>
+
+<div class="footnote"><span class="inlineCode">testE.ifE</span> is a synonym for <span class="inlineCode">ifE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="constantE">constantE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+constantE(sourceE,val) -&gt; EventStream val
+
+sourceE :: EventStream a
+</pre>
+
+<p>Transforms an event stream by discarding its events' values to return
+a constant value.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p>The following code displays an alert box whenever the button is clicked:
+</p>
+
+<pre>
+var clicks = clicksE('form-button');
+clicks.constantE(42).mapE(function(v) { 
+  alert('The magic number is ' + v '.'); });
+</pre>
+
+</div>
+
+<div class="footnote"><span class="inlineCode">sourceE.constantE</span> is a synonym for <span class="inlineCode">constantE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="collectE">collectE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+collectE(sourceE,init,f) -&gt; EventStream b
+
+sourceE :: EventStream a
+init :: b
+f :: a b -&gt; b
+</pre>
+
+<p>Given an event stream, an initial value and a combining function, returns
+an event stream of accumulated results.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p>The following code uses Javascript's <span class="inlineCode">Array.concat</span> method
+to accumulate an array of events:</p>
+
+<pre>
+original.collectE([],function(new,arr) { return [new].concat(arr); });
+</pre>
+
+<p>Note that the initial value is the empty array. In the resultant event
+stream of event value, the latest event is first.</p>
+
+<p>The following code ignores the event value, and increments the initial
+value, effectively counting the number of events that occur.  Naturally, the 
+initial value is <span class="inlineCode">0</span>:</p>
+
+<pre>
+original.collectE(0,function(_,count) { return count + 1; });
+</pre>
+
+</div>
+
+<div class="footnote"><span class="inlineCode">sourceE.collectE</span> is a synonym for <span class="inlineCode">collectE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="andE">andE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+andE(sourceE, ...) -&gt; EventStream True
+
+sourceE :: EventStream Bool
+</pre>
+
+<p>Fires an event when all its arguments fire <span class="inlineCode">True</span>.</p>
+
+</div><div class="article"><div class="title"><a name="orE">orE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+orE(sourceE, ...) -&gt; EventStream True
+
+sourceE :: EventStream Bool
+</pre>
+
+<p>Fires an event when any of its arguments fire <span class="inlineCode">True</span>.</p>
+
+</div><div class="article"><div class="title"><a name="notE">notE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+notE(sourceE) -&gt; EventStream Bool
+
+sourceE :: EventStream Bool
+</pre>
+
+<p>Negates each event in the event stream.</p>
+
+<div class="footnote"><span class="inlineCode">sourceE.notE</span> is a synonym for <span class="inlineCode">notE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="filterRepeatsE">filterRepeatsE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+filterRepeatsE(sourceE) -&gt; EventStream a
+
+sourceE :: EventStream a
+</pre>
+
+<p>Filters an event stream, removing successive events that are
+equal.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p>This timer signals an event every 0.1 seconds.  However, it reports
+time in seconds.</p>
+
+<pre>
+var secE = timerE(100).mapE(function (ms)
+              { return Math.floor (ms / 1000) % 10; });
+</pre>
+
+<p><span class="inlineCode">filterRepeatsE</span> removes the duplicate events from the event stream:</p>
+
+<pre>
+secE.filterRepeatsE()
+</pre>
+</div>
+
+<div class="footnote"><span class="inlineCode">sourceE.filterRepeatsE</span> is a synonym for <span class="inlineCode">filterRepeatsE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="receiverEandsendEvent">receiverE and sendEvent</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+receiverE() -&gt; Event a
+
+sendEvent(a,EventStream a);
+</pre>
+
+<p><span class="inlineCode">receiverE</span> creates an event stream that does not receive
+events from any other event source.  However, <span class="inlineCode">sendEvent</span> may be
+used to send an event to a <span class="inlineCode">receiverE</span> event source.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p><span class="inlineCode">sendEvent</span> is useful for integrating Flapjax with existing
+event-based Javascript code.  For example, here is a simplified
+timer:</p>
+
+<pre>
+function simple_timerE(interval_ms) {
+  var evt = receiverE();
+  // create and install a callback
+  var f = function() { evt.sendEvent((new Date()).getTime()); };
+  window.setInterval(f,interval_ms);
+  return evt;
+}
+</pre>
+</div>
+
+</div><div class="article"><div class="title"><a name="snapshotE">snapshotE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+snapshotE(sourceE,valueB) -&gt; EventStream b
+
+sourceE :: EventStream a
+valueB :: Behavior b
+</pre>
+
+<p>Returns an event stream carrying values from <i>valueB</i>. Values are captured when <i>sourceE</i> fires an
+event.</p>
+
+<div class="footnote"><span class="inlineCode">sourceE.snapshotE</span> is a synonym for <span class="inlineCode">snapshotE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="onceE">onceE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+onceE(sourceE) -&gt; EventStream a
+
+sourceE : EventStream a
+</pre>
+
+<p>Given a stream of events, create a new stream that will send only the first event sent by the original event stream.
+</p>
+
+<div class="footnote"><span class="inlineCode">sourceE.onceE</span> is a synonym for <span class="inlineCode">onceE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="skipFirstE">skipFirstE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+skipFirstE(sourceE) -&gt; EventStream a
+
+sourceE : EventStream a
+</pre>
+
+<p>Skips the first event in <i>sourceE</i>.</p>
+
+<div class="example"><div class="title">Example</div>
+<p>The expression <span class="inlineCode">skipFirstE(skipFirstE(sourceE))</span> skips the first two events from <i>sourceE</i>.</p>
+</div>
+
+<div class="footnote"><span class="inlineCode">sourceE.skipFirstE</span> is a synonym for <span class="inlineCode">skipFirstE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="delayE">delayE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+delayE(sourceE,intervalB) -&gt; EventStream a
+
+sourceE :: EventStream a
+intervalB :: Behavior milliseconds
+</pre>
+
+<p>Delays propagation of the events from <i>sourceE</i> by <i>intervalB</i> milliseconds.</p>
+
+<div class="footnote"><span class="inlineCode">sourceE.delayE</span> is a synonym for <span class="inlineCode">delayE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="blindE">blindE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+blindE(sourceE,intervalB) -&gt; EventStream a
+
+sourceE : EventStream a
+intervalB : Behavior Int
+</pre>
+
+<p>Ignores events that fire less than <i>intervalB</i> milliseconds apart. All other events are propagated. Note that
+<i>intervalB</i> may be time-varying.</p>
+
+<div class="footnote"><span class="inlineCode">sourceE.blindE</span> is a synonym for <span class="inlineCode">blindE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="calmE">calmE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+calmE(sourceE,intervalB) -&gt; EventStream a
+
+sourceE : EventStream a
+intervalB : Behavior Int
+</pre>
+
+<p>"Calm" the event stream to fire at most once every <i>intervalB</i> milliseconds.  Events that occur
+sooner are delayed to ocur <i>intervalB</i> milliseconds after the most recently-fired event.  Only the most recent
+event is delayed.  So, if multiple events fire within <i>intervalB</i>, only the last event will be propagated.</p>
+
+<div class="footnote"><span class="inlineCode">sourceE.calmE</span> is a synonym for <span class="inlineCode">calmE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="startsWith">startsWith</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+startsWith(sourceE,initialVal) -&gt; Behavior a
+
+sourceE :: Behavior a
+initialVal :: a
+</pre>
+
+<p>Given an event stream and an initial value, create a time varying value that starts as the initial value and changes
+value whenever an event occurs, taking on the value of that event.</p>
+
+<div class="footnote"><span class="inlineCode">sourceE.startsWith</span> is a synonym for <span class="inlineCode">startsWith</span>.</div>
+
+</div><div class="article"><div class="title"><a name="changes">changes</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+changes(behavior) -&gt; EventStream a
+
+behavior :: Behavior a
+</pre>
+
+<p>Given a time varying value, make an event steam whose events are the values of the behaviour whenever it changes.</p>
+
+<div class="footnote"><span class="inlineCode">behavior.changes</span> is a synonym for <span class="inlineCode">changes</span>.</div>
+
+</div><div class="article"><div class="title"><a name="constantB">constantB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+constantB(val) -&gt; Behavior val
+</pre>
+
+<p>Create a behavior with a constant value.</p>
+
+</div><div class="article"><div class="title"><a name="delayB">delayB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+delayB(sourceB,delay) -&gt; Behavior a
+delayB(sourceB,delayB) -&gt; Behavior a
+
+sourceB :: Behavior a
+delayB :: Behavior milliseconds
+delay :: milliseconds
+</pre>
+
+<p>Given a time varying value, create a new time varying value whose value at
+any point in time is the value of the original value from agiven amount of time
+before. The delay time is specified in milliseconds. As this would leave the
+value undefined until the delay time has passed at least once, such as at
+program initialization, there is also an optional initialization. Both the
+initialization argument and amount of time to delay may be time varying
+values.</p>
+
+<div class="footnote"><span class="inlineCode">sourceB.delayB</span> is a synonym for <span class="inlineCode">delayB</span>.</div>
+
+</div><div class="article"><div class="title"><a name="valueNow">valueNow</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+valueNow(sourceB) -&gt; a
+
+sourceB :: Behavior a
+</pre>
+
+<p>Returns the current value of <i>sourceB</i>.  This is a primitive method
+that should not be used under normal circumstances.  <a href="#liftB" class="link">liftB</a> or
+<a href="#snapshotE" class="link">snapshotE</a> may be more appropriate.</p>
+
+</div><div class="article"><div class="title"><a name="switchB">switchB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+switchB(sourceBB) -&gt; Behavior a
+
+sourceBB :: Behavior (Behavior a)
+</pre>
+
+<p>When the value of a time varying value is time varying itself, which is common when dealing DOM objects.</p>
+
+<div class="footnote"><span class="inlineCode">sourceBB.switchB</span> is a synonym for <span class="inlineCode">switchB</span>.</div>
+
+</div><div class="article"><div class="title"><a name="andB">andB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+andB(valueB, ...) -&gt; Behavior Bool
+</pre>
+
+<p>Returns <span class="inlineCode">True</span> when all arguments are <span class="inlineCode">True</span> and <span class="inlineCode">False</span> otherwise.</p>
+
+</div><div class="article"><div class="title"><a name="orB">orB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+orB(valueB, ...) -&gt; Behavior Bool
+</pre>
+
+<p>Returns <span class="inlineCode">True</span> when any argument is <span class="inlineCode">True</span> and <span class="inlineCode">False</span> otherwise.</p>
+
+</div><div class="article"><div class="title"><a name="notB">notB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+notB(valueB) -&gt; Behavior Bool
+
+valueB = Behavior a
+</pre>
+
+<p>This function is short for:</p>
+
+<pre>
+valueB.liftB(function(v) { return !v; })
+</pre>
+
+</div><div class="article"><div class="title"><a name="liftB">liftB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+liftB(f,arg_1, ..., arg_n) -&gt; Behavior result
+
+
+f = (arg_1 ... arg_n -&gt; result) or Behavior (arg_1 ... arg_n -&gt; result)
+arg_1 = a_1 or Behavior a_1
+...
+arg_n = a_n or Behavior a_n
+</pre>
+
+<p>Create a time varying value that is a function of other time varying values. The function itself may be a
+time-varying value.</p>
+
+</div><div class="article"><div class="title"><a name="condB">condB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+condB([conditionB,resultB], ...) -&gt; Behavior a
+
+conditionB = Behavior Bool
+resultB = Behavior a
+</pre>
+
+<p>Evaluates to the first <i>resultB</i> whose associated <i>conditionB</i> is <span class="inlineCode">True</span>.</p>
+
+</div><div class="article"><div class="title"><a name="ifB">ifB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+ifB(conditionB,trueB,falseB) -&gt; Behavior a
+
+conditionB = Behavior Bool
+trueB = Behavior a
+falseB = Behavior a
+</pre>
+
+<p>Switches between <i>trueB</i> and <i>falseB</i>, as the value of <i>conditionB</i> varies between <span class="inlineCode">true</span>
+and <span class="inlineCode">false</span>.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<pre>
+var t = timerB(1000);
+var t1 = t.liftB(function(v) { return v + 1; });
+var less_than = function(xB,yB) { return liftB(function(x,y) { return x &lt; y; },xB,yB) };
+
+trueB = ifB(less_than(t,t1),true,false);
+</pre>
+
+<p>Since <span class="inlineCode">t &lt; t1</span> is always <span class="inlineCode">true</span>, <i>trueB</i> is always <span class="inlineCode">true</span>.</p>
+
+</div>
+
+<div class="footnote"><span class="inlineCode">chooseB</span> is a synonym for <span class="inlineCode">ifB</span>.</div>
+
+</div><div class="article"><div class="title"><a name="timerB">timerB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+timerB(interval) -&gt; Behavior Int
+timerB(intervalB) -&gt; Behavior Int
+
+interval :: milliseconds
+intervalB :: Behavior milliseconds
+</pre>
+
+<p>Create a time varying value with the current time in milliseconds, updated
+by an interval argument (that may be time varying).</p>
+
+</div><div class="article"><div class="title"><a name="blindB">blindB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+blindB(sourceB,intervalB) -&gt; Behavior a
+
+sourceB : Behavior a
+intervalB : Behavior Int
+</pre>
+
+<p>Similar to <a href="#blindE" class="link">blindE</a> but for behaviors.</p>
+
+<div class="footnote"><span class="inlineCode">sourceB.blindB</span> is a synonym for <span class="inlineCode">blindB</span>.</div>
+
+</div><div class="article"><div class="title"><a name="calmB">calmB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+calmB(sourceB,intervalB) -&gt; Behavior a
+
+sourceB : Behavior a
+intervalB : Behavior Int
+</pre>
+
+<p>Similar to <a href="#calmE" class="link">calmE</a>, but for behaviors.</p>
+
+<div class="footnote"><span class="inlineCode">sourceB.calmB</span> is a synonym for <span class="inlineCode">calmB</span>.</div>
+
+</div><div class="article"><div class="title"><a name="Time-varyingDOMElements">Time-varying DOM Elements</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+TAG :: Behavior { attribute-name: attribute-value, ...} * Behavior HTMLElement * ... -&gt; Behavior HTMLElement
+TAG :: Behavior HTMLElement * ... -&gt; Behavior HTMLElement // no attributes
+</pre>
+
+<p>Flapjax includes support for DOM elements with time-varying components. For
+each HTML Element, Flapjax defines a function with the same name that
+constructions the corresponding element.</p>
+
+<div class="example"><div class="title">Example</div>
+<pre>
+var secondsB = timerE(1000).collectE(0,function(_,x) { return x + 1; }).startsWith(0);
+var spanB = SPAN("We've been running for ",secondsB," seconds");
+</pre>
+
+<p>Note that this example intersperses a behavior (<span class="inlineCode">spanB</span>) with constant values.</p>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="insertDomB">insertDomB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+insertDomB :: Behavior HTMLElement * HTMLElement or id [ * location ] -&gt; void
+
+location = 'before' U 'after' U 'leftMost' U 'rightMost' U 'over' U 'beginning' U 'end'
+
+insertDomB(Behavior HTMLElement,HTMLElement or id [, location]) -&gt; void
+</pre>
+
+</div><div class="article"><div class="title"><a name="mouseTopB">mouseTopB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+mouseTopB(Element) -&gt; Behavior y-coordinate
+</pre>
+
+<p>A behavior carrying the y-coordinate of the mouse, relative to the specified element.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<pre>
+var yB = mouseTopB(document);
+</pre>
+
+<p><span class="inlineCode">yB</span> is the coordinate of the mouse, relative to the entire document.</p>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="mouseLeftB">mouseLeftB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+mouseLeftB(Element) -&gt; Behavior x-coordinate
+</pre>
+
+<p>A behavior carrying the x-coordinate of the mouse, relative to the specified element.</p>
+
+</div><div class="article"><div class="title"><a name="mouseB">mouseB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+mouseB(Element) -&gt; Behavior xy
+
+xy = { left: Int; top: Int }
+</pre>
+
+<p>A behavior carrying the mouse's coordinates, relative to the specified element.</p>
+
+</div><div class="article"><div class="title"><a name="extractValueB">extractValueB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+extractValueB(formElement) -&gt; Behavior value
+
+formElement = Element or Element-id
+</pre>
+
+<p>Returns a behavior carrying the value of the specified form element.</p>
+
+<div class="footnote"><span class="inlineCode">$B</span> is a synonym for <span class="inlineCode">extractValueB</span>.</div>
+
+</div><div class="article"><div class="title"><a name="extractValueE">extractValueE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+extractValueE(formElement) -&gt; EventStream value
+
+formElement = Element or Element-id
+</pre>
+
+<p>Returns an event stream that carries the value of <i>formElement</i>. A new event fires whenever the value
+changes.</p>
+
+</div><div class="article"><div class="title"><a name="extractEventE">extractEventE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+extractEventE(element,eventName) -&gt; EventStream DOMEvent
+extractEventE(elementB,eventName) -&gt; EventStream DOMEvent
+
+element = Element or Element-id
+elementB = Behavior element
+eventName = String
+</pre>
+
+<p>Returns an event stream that carries DOM events from <i>element</i>, of the type <i>eventName</i>. Each
+<i>DOMEvent</i> is a browser-dependent data-structure, derived from the <a href="http://www.w3.org/TR/2003/NOTE-DOM-Level-3-Events-20031107/">DOM Event Specification</a>.</p>
+
+<div class="footnote"><span class="inlineCode">$E</span> is a synonym for <span class="inlineCode">extractEventE</span>.</div>
+
+</div><div class="article"><div class="title"><a name="clicksE">clicksE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+clicksE(element) -&gt; EventStream ClickEvent
+</pre>
+
+<p><span class="inlineCode">clicksE(element)</span> is shorthand for
+<span class="inlineCode">extractEventE(element,'click')</span>.</p>
+
+</div><div class="article"><div class="title"><a name="timerE">timerE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+timerE(milliseconds) -&gt; EventStream Int
+timerE(millisecondsB) -&gt; EventStream Int
+
+milliseconds : Int
+millisecondsB : Behavior milliseconds
+</pre>
+
+<p>Given an interval in milliseconds, returns an event stream that repeatedly
+fires an event as the interval lapses. The interval itself may be a behavior.
+The value of each event is the system time, in milliseconds. </p>
+
+<div class="example"><div class="title">Example</div>
+
+<p>The following event stream fires an event each second.  The event value
+is the current data and time, formatted as a string:</p>
+
+<pre>
+function formatDate(t) {
+  return (new Date(t)).toLocaleString();
+}
+
+timerE(1000).mapE(formatDate)
+</pre>
+
+<p>Note that the interval may be a behavior.  The following expression's
+interval changes as the user enters a different interval:</p>
+
+<pre>
+timerE(extractValueB('interval-text-box')).mapE(formatDate)
+</pre>
+
+<p><span class="inlineCode">timerE</span> is a method of behavior objects.  The preceding
+expression may be written as:</p>
+
+<pre>
+extractValueB('interval-text-box').timerE().mapE(formatDate)
+</pre>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="disableTimer">disableTimer</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+disableTimer(timer);
+</pre>
+
+<p>Given an event timer, make it stop updating.</p>
+
+</div><div class="article"><div class="title"><a name="extractValueOnEventE">extractValueOnEventE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+extractValueOnEventE(anyE,formElement) -&gt; EventStream value
+
+anyE = EventStream
+formElement = Element or Element-id
+</pre>
+
+<p>Extracts the value of <i>formElement</i> whenever an event occurs on <i>anyE</i>.</p>
+
+</div><div class="article"><div class="title"><a name="extractIdB">extractIdB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+extractIdB(id [, changes]) -&gt; Behavior Element
+
+id = String
+changes = Behavior DOM
+</pre>
+
+<p>The element associated with a specified <i>id</i> may change over time.  Whenever the value <i>changes</i> changes,
+the element with the id <i>id</i> is reextracted.  If <i>changes</i> is not specified, the element <i>id</i> is
+reextracted whenever an inserted DOM element changes.</p>
+
+</div><div class="article"><div class="title"><a name="insertDomE">insertDomE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+insertDomE(source, dest, placement = 'over');
+
+source = EventStream Element
+dest = Element-Id or Element
+placement = 'before' or 'after' or 'leftMost' or 'rightMost' or 'over' or 'beginning' or 'end'
+</pre>
+
+<p>Similar to <a href="#insertDomB" class="link">insertDomB</a>, but inserts Elements from an event-stream instead of a behavior.</p>
+
+</div><div class="article"><div class="title"><a name="insertValueE">insertValueE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+insertValueE(valueE, dest, field, ...);
+
+valueE = EventStream
+dest = Element or Element-id
+field = String
+</pre>
+
+<p>Inserts each event in <i>valueE</i> info the field <i>field</i> of the elmeent <i>dest</i></p>
+
+<div class="example"><div class="title">Example</div>
+
+<pre>
+var textField = TEXT();
+var button = BUTTON();
+
+function getDate() { return (new Date()).toString(); };
+
+insertValueE(extractEventE(button, 'click').mapE(getDate), textField, 'value');
+</pre>
+
+<p>This code inserts the current date and time into <i>textField</i> whenever <i>button</i> is clicked.</p>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="insertValueB">insertValueB</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+insertValueB(valueB, dest, field, ...);
+
+valueB = Behavior
+dest = Element or Element-id
+field = String
+</pre>
+
+<p>Inserts the time-varying value <i>valueB</i> info the field <i>field</i> of the elmeent <i>dest</i>.  This function
+is similar to <a href="#insertValueE" class="link">insertValueE</a>.</p>
+
+</div><div class="article"><div class="title"><a name="tagRec">tagRec</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+tagRec(Array eventName, (Array eventName -&gt; ElementB)) -&gt; Behavior Element
+</pre>
+
+<p>An element may be a function of some event and behaviours, while those same events and behaviours might als be
+functions of the tag. <i>tagRec</i> is a convenience method for writing such cyclic dependencies. Also, as certain
+updates may cause a tag to be destroyed and recreated, this guarentees the extracted events are for the most recently
+constructed DOM node.</p>
+
+<div class="example"><div class="title">Example</div>
+<pre>
+tagRec(
+  ['mouseover', 'mouseout'],
+  function (overE, outE) {
+    return DIV(
+      { style: {
+        color:
+          mergeE(overE.constantE('#FFF'), outE.constantE('#000')).
+          startsWith('#000')}},
+      'mouse over me to change color!');
+  });
+</pre>
+
+<p>Create a tags whose background color is white on mouse over and black on mouseout, starting as black.</p>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="getWebServiceObjectE">getWebServiceObjectE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+getWebServiceObjectE(requestE) -&gt; EventStream response
+
+requestE = EventStream request
+request = {
+  url: string,
+  request: 'get' | 'rest' | 'post' | 'rawPost',
+  response: 'json', 'xml', 'plain',
+  fields: object | undefined,
+  body: string | undefined
+  async: bool
+}
+</pre>
+
+<p>Sends a stream of requests to a web server and receives a stream of
+responses.</p>
+
+<p><span class="inlineCode">url</span> is the address of the web service.
+<span class="inlineCode">getWebServiceObjectE</span> is based on
+<span class="inlineCode">XMLHttpRequest</span>, so the service must be on the same server
+as your application.</p>
+
+<p><span class="inlineCode">request</span> specifies how the request should be encoded.
+
+<ul>
+
+<li>In a <span class="inlineCode">get</span> request, each field in <span class="inlineCode">fields</span> is
+encoded as a <span class="inlineCode">GET</span> parameter.  The value of each field is
+cast to a string.</li>
+
+<li>A <span class="inlineCode">rest</span> request is similar to a <span class="inlineCode">get</span>
+request.  Each field is encoded as a <span class="inlineCode">POST</span> parameter.  The
+value of each field is cast to a string.</li>
+
+<li>In a <span class="inlineCode">post</span> request, the <span class="inlineCode">fields</span> object is
+serialized as a JSON string and sent as the body of the request.</li>
+
+<li>In a <span class="inlineCode">rawPost</span> request, the <span class="inlineCode">body</span> string is 
+sent as the body of the request.</li>
+
+</ul></p>
+
+<p><span class="inlineCode">response</span> specifies how the response is decoded.
+<span class="inlineCode">plain</span>  indicates that the body should not be decoded.  This
+is the default behavior.  <span class="inlineCode">json</span> indicates that the response
+should be parsed as a JSON string.  <span class="inlineCode">xml</span> indicates that the
+response is XML.</p>
+
+</div><div class="article"><div class="title"><a name="getForeignWebServiceObjectE">getForeignWebServiceObjectE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+getForeignWebServiceObjectE(requestE) -&gt; responseE
+</pre>
+
+<p><i>Note:</i> You must call
+<span class="inlineCode"><a href="#initFlapjaxForeignWSO" class="link">initFlapjaxForeignWSO</a></span> before using this
+function.</p>
+
+<p>This function has the same interface as
+<span class="inlineCode"><a href="#getWebServiceObjectE" class="link">getWebServiceObjectE</a></span>.  Requests are made
+through a Flash object, so the <span class="inlineCode">url</span> is subject to the Flash
+Player's <a href="http://www.adobe.com/devnet/flashplayer/articles/cross_domain_policy.html">cross-domain
+policy</a>.</p>
+
+</div><div class="article"><div class="title"><a name="evalForeignScriptValE">evalForeignScriptValE</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+evalForeignScriptValE(urlArgE) -&gt; EventStream result
+
+urlArgE = EventStream { url: string, globalArg: string }
+</pre>
+
+<p>Evaluates the JavaScript code at <span class="inlineCode">url</span>; <span class="inlineCode">url</span>
+may be on a remote server.  The code is expected to set the global
+variable named <span class="inlineCode">globalArg</span>.  Flapjax will poll this variable
+and send its value to the result stream when it is set.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<p>See the <a href="/demos/index.shtml#delicious">Delicious</a>
+demos.</p>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="initFlapjaxForeignWSO">initFlapjaxForeignWSO</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+initFlapjaxForeignWSO(baseUrl);
+
+baseUrl : url
+</pre>
+
+<p>This function must be called before
+<span class="inlineCode"><a href="#getForeignWebServiceObjectE" class="link">getForeignWebServiceObjectE</a></span> is called.
+<span class="inlineCode">baseUrl</span> must be base URL of the Flapjax library.</p>
+
+<div class="example"><div class="title">Example</div>
+
+<pre>
+initFlapjaxForeignWSO('http://www.flapjax-lang.org/fx');
+</pre>
+
+</div>
+
+</div><div class="article"><div class="title"><a name="getElementsByClass">getElementsByClass</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+getElementsByClass(className) -&gt; Array Element
+getElementsByClass(className,rootElement) -&gt; Array Element
+getElementsByClass(className,rootElement,elementTag) -&gt; Array Element
+
+className = String
+rootElement = Element or undefined
+elementTag = String
+</pre>
+
+<p>Returns an array of elements with the specified <i>className</i>. If <i>rootElement</i> is specified, the returned
+elements are children of <i>rootElement</i>. If <i>elementTag</i> is specified, it constraints the elements to have the
+specified tag. </p>
+
+<div class="example"><div class="title">Example</div>
+
+<pre>
+getElementsByClass('article',document,'div')
+</pre>
+
+<p>Returns all <span class="inlineCode">div</span> elements of the class <span class="inlineCode">article</span>.</p>
+
+</div>
+
+<div class="footnote"><span class="inlineCode">$$</span> is a synonym for <span class="inlineCode">getElementsByClass</span>.</div>
+
+</div><div class="article"><div class="title"><a name="getObjsA">getObjsA</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+getObjsA(elementId, ...) -&gt; Array Element
+
+elementId = String
+</pre>
+
+<p>Returns an array of elements, selected by their <i>id</i>s.</p>
+
+<div class="footnote"><span class="inlineCode">$A</span> is a synonym for <span class="inlineCode">getObjsA</span>.</div>
+
+</div><div class="article"><div class="title"><a name="getObjs">getObjs</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+getObjs(elementId, ...) -&gt; { elementId: Element, ... }
+
+elementId = String
+</pre>
+
+<p>Returns a dictionary of elements, keyed by their <i>id</i>s.</p>
+
+<div class="footnote"><span class="inlineCode">$O</span> is a synonym for <span class="inlineCode">getObjs</span>.</div>
+
+</div><div class="article"><div class="title"><a name="getObj">getObj</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+getObj(elementId) -&gt; Element
+getObj(Element) -&gt; Element
+
+elementId = String
+</pre>
+
+<p>Returns the element with the id <i>elementId</i>.</p>
+
+<div class="footnote"><span class="inlineCode">$</span> is a synonym for <span class="inlineCode">getObj</span>.</div>
+
+</div><div class="article"><div class="title"><a name="readCookie">readCookie</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+readCookie(fieldName) -&gt; String or undefined
+
+fieldName = String
+</pre>
+
+<p>Returns the value associated with <i>fieldName</i> from the cookie.</p>
+
+</div><div class="article"><div class="title"><a name="swapDom">swapDom</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+swapDom(existingElement,newElement) -&gt; Element
+
+existingElement = Element or ElementId
+newElement = Element or ElementId
+</pre>
+
+<p>Removes <i>existingElement</i> from the document, replacing it with <i>newElement</i>. The removed element is
+returned.</p>
+
+</div><div class="article"><div class="title"><a name="getURLParam">getURLParam</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+getURLParam(paramName) -&gt; String or undefined
+
+paramName = String
+</pre>
+
+<p>Returns the value of an GET argument supplied to the URL.  The initial URL is stored when the Flapjax framework
+is initialized, so subsequent modifications do not affect this function.</p>
+
+<div class="footnote"><span class="inlineCode">$URL</span> is a synonym for <span class="inlineCode">getURLParam</span>.</div>
+
+</div><div class="article"><div class="title"><a name="cumulativeOffset">cumulativeOffset</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+cumulativeOffset(element) -&gt; { left: integer, top: integer }
+</pre>
+
+<p>Returns the absolute position of an element relative to the top-left
+corner of the window.</p>
+
+</div><div class="article"><div class="title"><a name="slice">slice</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+slice(array, startIndex) -&gt; Array
+slice(array, startIndex, endIndex) -&gt; Array
+</pre>
+
+<p>Returns a subsequence of <i>array</i>, starting from the element at <i>startIndex</i> and upto and excluding the
+element at <i>endIndex</i>.  If <i>endIndex</i> is not specified, it is assumed to be <span class="inlineCode">array.length - 1</span>.</p>
+
+</div><div class="article"><div class="title"><a name="member">member</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+member(elt,array) -&gt; Bool
+
+elt : a
+array : Array a
+</pre>
+
+<p>Determines whether <i>elt</i> is an element of <i>array</i>. Comparision is performed with the <span class="inlineCode">===</span>
+operator.</p>
+
+</div><div class="article"><div class="title"><a name="map">map</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+map(f,array_1, ..., array_n) -&gt; Array r
+
+array_1 : Array a_1
+...
+array_n : Array a_n
+f : (a_1 ... a_n -&gt; r)
+</pre>
+
+<p>Applies <i>f</i> pointwise across the supplied arrays and returns an array of results.</p>
+
+</div><div class="article"><div class="title"><a name="filter">filter</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+filter(predicate,array) -&gt; Array a
+
+predicate : a -&gt; bool
+array : Array a
+</pre>
+
+<p>Filters out the elements that fail to satisfy <i>predicate</i>.</p>
+
+</div><div class="article"><div class="title"><a name="forEach">forEach</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+forEach(f,array_1, ..., array_n);
+
+array_1 : Array a_1
+...
+array_n : Array a_n
+f : (a_1 ... a_n -&gt; r)
+</pre>
+
+<p>Similar to <a href="#map" class="link">map</a>, but does not accumulate an array of results</p>.
+
+</div><div class="article"><div class="title"><a name="fold">fold</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+
+<pre>
+fold(f,init,array_1, ..., array_n) -&gt; b
+
+init : b
+f : a_1 ... a_n b -&gt; b
+array_1 : Array a_1
+...
+array_n : Array a_n
+</pre>
+
+<p>Reduces the arrays left-to-right.</p>
+
+</div><div class="article"><div class="title"><a name="foldR">foldR</a>&nbsp;<a class="diminutive" href="#toc">[top]</a></div>
+<pre>
+foldR(f,init,array_1, ..., array_n) -&gt; b
+
+init : b
+f : a_1 ... a_n b -&gt; b
+array_1 : Array a_1
+...
+array_n : Array a_n
+</pre>
+
+<p>Reduces the arrays right-to-left.</p>
+
+</div></body></html>
