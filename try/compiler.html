@@ -43,7 +43,7 @@ function makeDownload(src) {
     return {
       url: '/demos/' + src,
       fields: { },
-      request: 'rest',
+      request: 'get',
       response: 'plain', /* don't interpret the result--it's source code */
       asynchronous: true
     };
