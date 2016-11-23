@@ -34,7 +34,7 @@ function makeCompileRequest(src) {
   return {
     url: "http://104.196.37.39:4998/fxserver/compile/" + myGuid,
     body: src,
-    request: "get",
+    request: "rawPost",
     response: "plain", // TODO: be more informative
     asynchronous: true }};
 
