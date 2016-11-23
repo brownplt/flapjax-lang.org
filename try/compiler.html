@@ -22,7 +22,7 @@ var myGuid = guid();
 
 function makeUpload(src) {
   return {
-    url: '/fxserver/setobj/' + myGuid,
+    url: 'http://104.196.37.39:4998/fxserver/setobj/' + myGuid,
     body: src,
     request: 'rawPost',
     response: 'json', /* we get back a simple true/false value */
@@ -32,7 +32,7 @@ function makeUpload(src) {
 
 function makeCompileRequest(src) {
   return {
-    url: "/fxserver/compile/" + myGuid,
+    url: "http://104.196.37.39:4998/fxserver/compile/" + myGuid,
     body: src,
     request: "rawPost",
     response: "plain", // TODO: be more informative
@@ -83,7 +83,7 @@ function initialLoaded(initial) {
   insertValueE(compileResultE,$("msgs"),"innerHTML"); // security police
 
   compileResultE.mapE(function(compileResult) {
-    window.parent.output.location.href = "/fxserver/getobj/" + myGuid;
+    window.parent.output.location.href = "http://104.196.37.39:4998/fxserver/getobj/" + myGuid;
      });
   
   }
