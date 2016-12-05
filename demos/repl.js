@@ -147,7 +147,7 @@ function renderEvent(evt) {
     return SPAN("EventStream");
   }
   else {
-    return SPAN(toJSONString(evt)) }}
+      return SPAN(JSON.stringify(evt)) }}
 
 
 function renderEventStream(e) { 
@@ -190,7 +190,7 @@ function render(argE) {
     else if (arg.nodeType > 0) {
       return constantB(arg) }
     else {
-      var str = toJSONString(arg);
+      var str = JSON.stringify(arg);
       return constantB(SPAN({ style: { float: "left" } },
                              typeof str == "undefined"
                              ? "" : str));
