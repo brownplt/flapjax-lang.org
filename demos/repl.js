@@ -204,7 +204,7 @@ function compile(srcE) {
       return oneE(src.txt) }
     else { 
       return getWebServiceObjectE(oneE({
-        url : "http://104.196.37.39:4998/fxserver/compile_expr",
+        url : "http://23.20.114.147:4998/fxserver/compile_expr",
         request: "rawPost",
         response: "plain",
         body:  src.txt,
