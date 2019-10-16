@@ -81,6 +81,10 @@ Copyright &copy; 2006&mdash;2019 The Flapjax Team.
 </div> <!-- wrapper -->
 
 <script type="text/javascript">
+if (window.location.protocol === "https:") {
+  let warn = document.createTextNode("To use the online compiler/REPL, you need to access this old website using HTTP, not HTTPS");
+  document.body.insertBefore(warn, document.body.firstChild);
+}
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
