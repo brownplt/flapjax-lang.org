@@ -7,7 +7,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  * * Redistributions of source code must retain the above copyright notice,
  *   this list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
@@ -16,7 +16,7 @@
  * * Neither the name of Brown University, the Flapjax Team, nor the names
  *   of its contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -43,7 +43,7 @@ function cons(x, y) {
   return { first: x, rest: y } }
 
 
-function first(lst) { 
+function first(lst) {
   return lst.first }
 
 
@@ -81,7 +81,7 @@ function theRealMap(f) { return function(lst) {
   else { return (cons(f(lst.first), theRealMap(f)(lst.rest))) } }};
 
 
-function tuple(x,y) { 
+function tuple(x,y) {
   return { fst : x, snd: y } }
 
 
@@ -103,12 +103,12 @@ function isAltEnterPressed(keyEvt) {
 var ticks = timerB(10);
 
 function withinSecondsOf(now) { return function(x) {
-  
+
   return now - x.fst <= (document.body.clientWidth * 7) }}
 
 
 function renderBehavior(b) {
-  
+
    var withTimes = liftB(tuple, ticks, b).changes()
                                          .collectE(empty, function(v, vals) {
     if (vals == empty || v.snd != vals.first.snd) {
@@ -116,7 +116,7 @@ function renderBehavior(b) {
     else {
       return cons(tuple(v.fst, vals.first.snd), vals.rest) } });
 
-   var withWidths = withTimes.mapE(mapPairs(function(next, prev) { 
+   var withWidths = withTimes.mapE(mapPairs(function(next, prev) {
     return tuple(Math.floor((next.fst - prev.fst) / 10), next.snd) }));
 
 
@@ -132,7 +132,7 @@ function renderBehavior(b) {
                                   padding: "5px",
                                   position: "absolute",
                                   overflow: "hidden",
-                                  backgroundColor: "pink" } }, 
+                                  backgroundColor: "pink" } },
                        p.snd))})
       (lst)});
 
@@ -150,7 +150,7 @@ function renderEvent(evt) {
       return SPAN(JSON.stringify(evt)) }}
 
 
-function renderEventStream(e) { 
+function renderEventStream(e) {
 
   withBlanks = mergeE(ticks.changes().mapE(left), e.mapE(right));
 
@@ -163,24 +163,24 @@ function renderEventStream(e) {
   var asSpans = withTimes.mapE(function(lst) {
     var now = Date.now();
     var i = 0;
-    return theRealMap(function(v) { 
+    return theRealMap(function(v) {
       var p = Math.floor((now - v.fst) / 10);
 
-      return SPAN({ style: { margin: "0px", padding: "0px", 
+      return SPAN({ style: { margin: "0px", padding: "0px",
                              position: "absolute", left: p, zIndex: i++ } },
                        renderEvent(v.snd)) })
       (lst)});
 
 
   var spans = asSpans.startsWith(empty).liftB(function(lst) {
-    return DIV({ style: { position: "relative", height: "20px" } }, 
+    return DIV({ style: { position: "relative", height: "20px" } },
                DIV.apply(this, listToArray(lst))) });
 
   return spans }
- 
+
 
 function render(argE) {
-  return argE.mapE(function(arg) { 
+  return argE.mapE(function(arg) {
     if (arg instanceof Behavior) {
       return renderBehavior(arg, 5) }
     else if (arg instanceof EventStream) {
@@ -202,9 +202,9 @@ function compile(srcE) {
   return srcE.mapE(function(src) {
     if (src.doNotCompile) {
       return oneE(src.txt) }
-    else { 
+    else {
       return getWebServiceObjectE(oneE({
-        url : "http://35.222.29.12:4998/fxserver/compile_expr",
+        url : "http://35.192.46.80:30000/fxserver/compile_expr",
         request: "rawPost",
         response: "plain",
         body:  src.txt,
@@ -216,12 +216,12 @@ function interact(compileB) {
   var inputWrapper = DIV({ style: { minWidth: "90%", position: "absolute",
                                     display: "inline" }},
                          input);
-  /* var input = DIV({ style: { minWidth: "90%", 
-                             position: "absolute", 
-                             display: "inline" }, 
+  /* var input = DIV({ style: { minWidth: "90%",
+                             position: "absolute",
+                             display: "inline" },
                      contentEditable: true}, "");
   */
-  
+
   var srcE = $E(input, "keydown").filterE(isAltEnterPressed)
              .snapshotE(compileB).mapE(function(doNotCompile) {
     input.contentEditable = false;
@@ -240,13 +240,13 @@ function interact(compileB) {
 
 
   var nextE = srcE.mapE(function() { return interact(compileB) });
-  
+
   var dom = DIV(
     // without this DIV, the prompt occurs on the previous line.
-    DIV({ style: { color: "white" } }, "."), 
+    DIV({ style: { color: "white" } }, "."),
     BR(),
-    DIV({ style: { fontSize: valE.constantE("14pt").startsWith("24pt"), 
-                   position: "relative", 
+    DIV({ style: { fontSize: valE.constantE("14pt").startsWith("24pt"),
+                   position: "relative",
                    width: "100%",  } },
         "> ", inputWrapper),
     outputE.startsWith(constantB("")).switchB(),
@@ -258,8 +258,8 @@ function interact(compileB) {
 
 function startInteractions() {
   var compile = INPUT({ type: "checkbox"});
-  var options = DIV({ style: { position: "fixed", 
-                               top: "0px", 
+  var options = DIV({ style: { position: "fixed",
+                               top: "0px",
                                right: "0px",
                                border: "1px solid black",
                                padding: "5px",
@@ -267,10 +267,10 @@ function startInteractions() {
                                background: "white",
                                zIndex: 100,
                                fontFamily: "Verdana, sans-serif"
-                             } }, 
+                             } },
                     DIV("Press Alt+Enter to execute."),
                     compile, "Skip Compiler. (Use Flapjax as a Library.)");
-  
+
   document.body.appendChild(
     DIV({ style: { color: "#333333",
                    height: "100%",
