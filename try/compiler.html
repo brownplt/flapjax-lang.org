@@ -20,9 +20,11 @@ function guid() {
 
 var myGuid = guid();
 
+var urlBase = 'http://compiler.flapjax-lang.org:4998/';
+
 function makeUpload(src) {
   return {
-    url: 'http://35.192.46.80:30000/fxserver/setobj/' + myGuid,
+    url: urlBase + '/fxserver/setobj/' + myGuid,
     body: src,
     request: 'rawPost',
     response: 'json', /* we get back a simple true/false value */
@@ -32,7 +34,7 @@ function makeUpload(src) {
 
 function makeCompileRequest(src) {
   return {
-    url: "http://35.192.46.80:30000/fxserver/compile/" + myGuid,
+    url: urlBase + "/fxserver/compile/" + myGuid,
     body: src,
     request: "rawPost",
     response: "plain", // TODO: be more informative
@@ -83,7 +85,7 @@ function initialLoaded(initial) {
   insertValueE(compileResultE,$("msgs"),"innerHTML"); // security police
 
   compileResultE.mapE(function(compileResult) {
-    window.parent.output.location.href = "http://35.192.46.80:30000/fxserver/getobj/" + myGuid;
+    window.parent.output.location.href = urlBase + "/fxserver/getobj/" + myGuid;
      });
 
   }

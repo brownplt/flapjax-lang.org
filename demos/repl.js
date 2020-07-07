@@ -204,7 +204,7 @@ function compile(srcE) {
       return oneE(src.txt) }
     else {
       return getWebServiceObjectE(oneE({
-        url : "http://35.192.46.80:30000/fxserver/compile_expr",
+	      url : "http://compiler.flapjax-lang.org:4998/fxserver/compile_expr",
         request: "rawPost",
         response: "plain",
         body:  src.txt,
